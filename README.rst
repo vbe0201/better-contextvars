@@ -8,6 +8,9 @@
 .. image:: https://travis-ci.com/itsVale/better-contextvars.svg?branch=master
     :target: https://travis-ci.com/itsVale/better-contextvars
 
+.. image:: https://api.codacy.com/project/badge/Grade/0a4eb517bdcd4618947bfa56e73e1282
+    :target: https://www.codacy.com/app/itsVale/better-contextvars?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=itsVale/better-contextvars&amp;utm_campaign=Badge_Grade
+
 .. image:: https://img.shields.io/github/issues/itsVale/better-contextvars.svg
     :target: https://GitHub.com/itsVale/better-contextvars/issues
 

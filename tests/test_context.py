@@ -139,7 +139,7 @@ class ContextTest(unittest.TestCase):
         ctx = contextvars.Context()
 
         def func(*args, **kwargs):
-            1 / 0
+            assert 1 / 0
 
         with self.assertRaises(ZeroDivisionError):
             ctx.run(func)
@@ -294,7 +294,7 @@ class ContextTest(unittest.TestCase):
             c.reset(t)
             self.assertEqual(list(ctx.keys()), [])
             with self.assertRaises(KeyError):
-                ctx[c]
+                assert ctx[c]
 
         ctx.run(fun)
 
