@@ -18,7 +18,6 @@ setup(
     long_description=readme,
     author='Valentin B.',
     packages=['better_contextvars'],
-    provides=['better_contextvars'],
     install_requires=requirements,
     license='MIT',
     include_package_data=True,
