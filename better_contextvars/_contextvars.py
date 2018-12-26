@@ -20,8 +20,8 @@ def verify_base_type(cls, name):
 
 
 class ContextMeta(type(collections.abc.Mapping)):
-    def __new__(mcs, names, bases, dct):
-        cls = super().__new__(mcs, names, bases, dct)
+    def __new__(cls, names, bases, dct):
+        cls = super().__new__(cls, names, bases, dct)
         if cls.__module__ != 'better_contextvars._contextvars' or cls.__name__ != 'Context':
             raise TypeError('Type "Context" is not an acceptable base type.')
         return cls
@@ -65,7 +65,7 @@ class Context(collections.abc.Mapping, metaclass=ContextMeta):
     def __init__(self):
         self._previous_context = None
 
-    def run(self, callable, *args, **kwargs):
+    def run(self, callable_, *args, **kwargs):
         if self._previous_context is not None:
             raise RuntimeError(
                 'Cannot enter Context: {} is already entered.'.format(self))
@@ -73,7 +73,7 @@ class Context(collections.abc.Mapping, metaclass=ContextMeta):
         self._previous_context = _get_context()
         try:
             _set_context(self)
-            return callable(*args, **kwargs)
+            return callable_(*args, **kwargs)
         finally:
             _set_context(self._previous_context)
             self._previous_context = None

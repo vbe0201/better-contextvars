@@ -86,7 +86,7 @@ class TaskTests(unittest.TestCase):
 
         async def main():
             tasks = []
-            for i in range(100):
+            for _ in range(100):
                 task = loop.create_task(sub(random.randint(0, 10)))
                 tasks.append(task)
 

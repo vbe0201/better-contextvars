@@ -64,13 +64,19 @@ class ContextTest(unittest.TestCase):
                 # Potentially we might want ContextVars to be subclassable.
                 pass
 
+            assert MyContextVar
+
         with self.assertRaisesRegex(TypeError, 'not an acceptable base type'):
             class MyContext(contextvars.Context):
                 pass
 
+            assert MyContext
+
         with self.assertRaisesRegex(TypeError, 'not an acceptable base type'):
             class MyToken(contextvars.Token):
                 pass
+
+            assert MyToken
 
     def test_context_new_1(self):
         with self.assertRaises(TypeError):
@@ -85,11 +91,11 @@ class ContextTest(unittest.TestCase):
         ctx = contextvars.Context()
 
         with self.assertRaisesRegex(TypeError, 'ContextVar key was expected'):
-            ctx[1]
+            assert ctx[1]
         with self.assertRaisesRegex(TypeError, 'ContextVar key was expected'):
-            1 in ctx
+            assert 1 in ctx
         with self.assertRaisesRegex(TypeError, 'ContextVar key was expected'):
-            ctx.get(1)
+            assert ctx.get(1)
 
     def test_context_get_context_1(self):
         ctx = contextvars.copy_context()
@@ -174,7 +180,7 @@ class ContextTest(unittest.TestCase):
         def func():
             self.assertIsNone(var.get(None))
             var.set('spam')
-            1 / 0
+            assert 1 / 0
 
         with self.assertRaises(ZeroDivisionError):
             ctx.run(func)
@@ -253,7 +259,7 @@ class ContextTest(unittest.TestCase):
         ctx2 = contextvars.copy_context()
         self.assertNotIn(c, ctx2)
         with self.assertRaises(KeyError):
-            ctx2[c]
+            assert ctx2[c]
         self.assertEqual(ctx2.get(c, 'aa'), 'aa')
         self.assertEqual(len(ctx2), 0)
         self.assertEqual(list(ctx2), [])
@@ -275,7 +281,7 @@ class ContextTest(unittest.TestCase):
         def fun():
             self.assertEqual(c.get(), 42)
             with self.assertRaises(KeyError):
-                ctx[c]
+                assert ctx[c]
             self.assertIsNone(ctx.get(c))
             self.assertEqual(ctx.get(c, 'spam'), 'spam')
             self.assertNotIn(c, ctx)
