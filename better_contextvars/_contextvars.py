@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import abc
 import asyncio
 import collections.abc
 import functools
@@ -13,17 +12,17 @@ _NO_DEFAULT = object()
 
 
 def verify_base_type(cls, name):
-    ensure_module = cls.__module__ != 'better_contextvars'
+    ensure_module = cls.__module__ != 'better_contextvars._contextvars'
     ensure_name = cls.__module__ != name
     if ensure_module or ensure_name:
         return True
     return False
 
 
-class ContextMeta(metaclass=abc.ABCMeta):
-    def __new__(cls, mcls, names, bases, dct):
-        cls = super().__new__(mcls, names, bases, dct)
-        if verify_base_type(cls, 'Context'):
+class ContextMeta(type(collections.abc.Mapping)):
+    def __new__(mcs, names, bases, dct):
+        cls = super().__new__(mcs, names, bases, dct)
+        if cls.__module__ != 'better_contextvars._contextvars' or cls.__name__ != 'Context':
             raise TypeError('Type "Context" is not an acceptable base type.')
         return cls
 
@@ -31,7 +30,7 @@ class ContextMeta(metaclass=abc.ABCMeta):
 class ContextVarMeta(type):
     def __new__(mcs, names, bases, dct):
         cls = super().__new__(mcs, names, bases, dct)
-        if verify_base_type(cls, 'ContextVar'):
+        if cls.__module__ != 'better_contextvars._contextvars' or cls.__name__ != 'ContextVar':
             raise TypeError(
                 'Type "ContextVar" is not an acceptable base type.')
         return cls
@@ -43,7 +42,7 @@ class ContextVarMeta(type):
 class TokenMeta(type):
     def __new__(mcs, names, bases, dct):
         cls = super().__new__(mcs, names, bases, dct)
-        if verify_base_type(cls, 'Token'):
+        if cls.__module__ != 'better_contextvars._contextvars' or cls.__name__ != 'Token':
             raise TypeError('Type "Token" is not an acceptable base type.')
         return cls
 
@@ -207,7 +206,7 @@ def _set_context(ctx):
 
 
 def _get_state():
-    loop = asyncio.get_running_loop()
+    loop = asyncio._get_running_loop()
     if loop is None:
         return _state
     task = asyncio.Task.current_task(loop=loop)
@@ -247,6 +246,6 @@ _get_event_loop = asyncio.get_event_loop
 _set_event_loop = asyncio.set_event_loop
 _new_event_loop = asyncio.new_event_loop
 
-asyncio.get_event_loop = asyncio.events.get_event_loop = _get_event_loop
-asyncio.set_event_loop = asyncio.events.set_event_loop = _set_event_loop
-asyncio.new_event_loop = asyncio.events.new_event_loop = _new_event_loop
+asyncio.get_event_loop = asyncio.events.get_event_loop = get_event_loop
+asyncio.set_event_loop = asyncio.events.set_event_loop = set_event_loop
+asyncio.new_event_loop = asyncio.events.new_event_loop = new_event_loop

@@ -15,6 +15,7 @@ matrix:
 install:
   - pip install -U pylama
   - pip install trio
+  - pip install -U -r requirements.txt
 
 script:
   - pip install -e .
