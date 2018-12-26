@@ -33,7 +33,9 @@ Installation
 ############
 
 Installation is very easy. Either install it from PyPI or directly from GitHub:
-::
+
+.. code-block::
+
     $ pip3 install -U better-contextvars
     $ pip3 install -U git+https://github.com/itsVale/better-contextvars#better-contextvars
 
@@ -54,7 +56,6 @@ Usage
 You use it the same way as the original module.
 
 .. code-block:: python
-    :linenos:
 
     import better_contextvars as contextvars
 
