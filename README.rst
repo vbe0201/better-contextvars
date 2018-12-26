@@ -37,7 +37,7 @@ Installation is very easy. Either install it from PyPI or directly from GitHub:
 .. code-block::
 
     $ pip3 install -U better-contextvars
-    $ pip3 install -U git+https://github.com/itsVale/better-contextvars#better-contextvars
+    $ pip3 install -U git+https://github.com/itsVale/better-contextvars#egg=better-contextvars
 
     $ git clone https://github.com/itsVale/better-contextvars
     $ python3 setup.py install
