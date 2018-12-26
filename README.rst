@@ -11,6 +11,12 @@
 .. image:: https://api.codacy.com/project/badge/Grade/0a4eb517bdcd4618947bfa56e73e1282
     :target: https://www.codacy.com/app/itsVale/better-contextvars?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=itsVale/better-contextvars&amp;utm_campaign=Badge_Grade
 
+.. image:: https://api.codacy.com/project/badge/Coverage/0a4eb517bdcd4618947bfa56e73e1282
+    :target: https://www.codacy.com/app/itsVale/better-contextvars?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=itsVale/better-contextvars&amp;utm_campaign=Badge_Coverage
+
+.. image:: https://api.codeclimate.com/v1/badges/20552710af9220ac17c2/maintainability
+   :target: https://codeclimate.com/github/itsVale/better-contextvars/maintainability
+
 .. image:: https://img.shields.io/github/issues/itsVale/better-contextvars.svg
     :target: https://GitHub.com/itsVale/better-contextvars/issues
 
