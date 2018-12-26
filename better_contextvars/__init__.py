@@ -2,7 +2,7 @@
 
 """
 better-contextvars
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 This represents an own implementation of contextvars compatible to
 Python 3.5+ instead of only 3.7.
