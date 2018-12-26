@@ -13,7 +13,7 @@ _NO_DEFAULT = object()
 
 def verify_base_type(cls, name):
     ensure_module = cls.__module__ != 'better_contextvars._contextvars'
-    ensure_name = cls.__module__ != name
+    ensure_name = cls.__name__ != name
     if ensure_module or ensure_name:
         return True
     return False
@@ -22,7 +22,7 @@ def verify_base_type(cls, name):
 class ContextMeta(type(collections.abc.Mapping)):
     def __new__(cls, names, bases, dct):
         cls = super().__new__(cls, names, bases, dct)
-        if cls.__module__ != 'better_contextvars._contextvars' or cls.__name__ != 'Context':
+        if verify_base_type(cls, 'Context'):
             raise TypeError('Type "Context" is not an acceptable base type.')
         return cls
 
@@ -30,7 +30,7 @@ class ContextMeta(type(collections.abc.Mapping)):
 class ContextVarMeta(type):
     def __new__(mcs, names, bases, dct):
         cls = super().__new__(mcs, names, bases, dct)
-        if cls.__module__ != 'better_contextvars._contextvars' or cls.__name__ != 'ContextVar':
+        if verify_base_type(cls, 'ContextVar'):
             raise TypeError(
                 'Type "ContextVar" is not an acceptable base type.')
         return cls
@@ -42,7 +42,7 @@ class ContextVarMeta(type):
 class TokenMeta(type):
     def __new__(mcs, names, bases, dct):
         cls = super().__new__(mcs, names, bases, dct)
-        if cls.__module__ != 'better_contextvars._contextvars' or cls.__name__ != 'Token':
+        if verify_base_type(cls, 'Token'):
             raise TypeError('Type "Token" is not an acceptable base type.')
         return cls
 
