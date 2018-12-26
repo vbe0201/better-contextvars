@@ -20,9 +20,6 @@
 .. image:: https://img.shields.io/github/issues/itsVale/better-contextvars.svg
     :target: https://GitHub.com/itsVale/better-contextvars/issues
 
-.. image:: https://img.shields.io/github/issues-pr/itsVale/better-contextvars.svg
-    :target: https://GitHub.com/itsVale/better-contextvars/pulls
-
 .. image:: https://img.shields.io/badge/License-MIT-blue.svg
     :target: http://perso.crans.org/besson/LICENSE.html
 
