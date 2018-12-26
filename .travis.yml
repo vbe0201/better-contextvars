@@ -1,0 +1,21 @@
+language: python
+sudo: false
+cache: pip
+
+python:
+  - 3.5
+  - 3.6
+
+matrix:
+  include:
+    - python: 3.7
+      dist: xenial
+      sudo: true
+
+install:
+  - pip install -U pylama
+
+script:
+  - pip install -e .
+  - pylama .
+  - python setup.py test
